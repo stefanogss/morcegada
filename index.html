@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Encontro da Morcegada</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:ital,wght@0,600;0,800;1,800;1,900&family=Barlow:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: uma camisa de time da turma (azul-marinho e verde-limão, as cores de 2008) aberta em seções empilhadas; a frente é o convite, as costas trazem o "número" 08.1 */
+:root{
+  --navy:#0d1733;
+  --navy-2:#13214a;
+  --navy-3:#1b2d5f;
+  --lime:#a6d63a;
+  --lime-soft:#c9ea7f;
+  --chalk:#eef3e2;
+  --muted:#9fb0cf;
+  --line:rgba(166,214,58,.28);
+  --display:"Saira Extra Condensed","Arial Narrow","Roboto Condensed",sans-serif;
+  --body:"Barlow","Segoe UI",Helvetica,Arial,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);background:#0d1733}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+body{background:var(--navy);color:var(--chalk);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:.95}
+h2{font-size:clamp(2.4rem,6vw,3.6rem);font-style:italic;font-weight:900;text-transform:uppercase;letter-spacing:.01em}
+h2 em{font-style:inherit;color:var(--lime)}
+.eyebrow{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.18em;font-size:.95rem;color:var(--lime)}
+p{margin:0}
+:focus-visible{outline:3px solid var(--lime);outline-offset:3px;border-radius:4px}
+
+/* Faixas diagonais da camisa */
+.stripes{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.stripes span{position:absolute;height:22px;width:140%;left:-20%;background:var(--lime);transform:rotate(-14deg);opacity:.9}
+.stripes span:nth-child(2){height:8px;opacity:.55}
+.stripes span:nth-child(3){height:3px;opacity:.4}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;background:linear-gradient(170deg,var(--navy-3),var(--navy) 70%);border-bottom:6px solid var(--lime)}
+.hero .stripes span:nth-child(1){top:58%}
+.hero .stripes span:nth-child(2){top:66%}
+.hero .stripes span:nth-child(3){top:71%}
+.hero-in{position:relative;display:grid;grid-template-columns:1.25fr .75fr;gap:32px;align-items:center;padding-block:56px 64px}
+.hero-copy{display:flex;flex-direction:column;gap:18px;min-width:0}
+.hero h1{font-size:clamp(4rem,13vw,8.6rem);font-weight:900;font-style:italic;text-transform:uppercase;letter-spacing:-.005em}
+.hero h1 small{display:block;font-size:.42em;color:var(--chalk);letter-spacing:.02em}
+.hero h1 b{color:var(--lime);font-weight:900;display:block}
+.slogan{font-size:clamp(1.15rem,2.6vw,1.4rem);font-weight:600;max-width:32ch}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1.5px solid var(--line);border-radius:999px;background:rgba(13,23,51,.6);font-weight:600;font-size:.98rem}
+.chip svg{width:18px;height:18px;flex:none;stroke:var(--lime)}
+.jersey{position:relative;justify-self:center;width:min(300px,100%)}
+.jersey svg{display:block;width:100%;height:auto}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;border-radius:12px;font-weight:700;font-size:1.02rem;text-decoration:none;border:2px solid var(--lime);cursor:pointer;font-family:var(--body);transition:transform .15s ease,background .15s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-solid{background:var(--lime);color:var(--navy)}
+.btn-ghost{background:transparent;color:var(--chalk)}
+.btn svg{width:20px;height:20px;flex:none}
+
+/* Contagem */
+.count{display:flex;gap:10px;flex-wrap:wrap}
+.count div{min-width:74px;padding:8px 12px;border-radius:10px;background:var(--navy);border:1.5px solid var(--line);text-align:center}
+.count strong{display:block;font-family:var(--display);font-weight:800;font-size:2.1rem;line-height:1;color:var(--lime);font-variant-numeric:tabular-nums}
+.count span{font-size:.75rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted)}
+
+section{padding-block:72px}
+section+section{border-top:1px solid var(--line)}
+.head{display:flex;flex-direction:column;gap:10px;margin-bottom:32px;max-width:640px}
+.head p{color:var(--muted)}
+
+/* Confirmação */
+.rsvp{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.panel{background:var(--navy-2);border:1.5px solid var(--line);border-radius:18px;padding:26px;display:flex;flex-direction:column;gap:18px;min-width:0}
+.steps{display:flex;flex-direction:column;gap:14px;margin:0;padding:0;list-style:none;counter-reset:s}
+.steps li{display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:start;counter-increment:s}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--lime);color:var(--navy);font-family:var(--display);font-weight:800;font-size:1.3rem}
+.steps b{display:block}
+.steps span{color:var(--muted);font-size:.95rem}
+.phone{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.phone strong{font-family:var(--display);font-weight:800;font-size:2.2rem;letter-spacing:.02em;font-variant-numeric:tabular-nums;user-select:all}
+.copy{background:transparent;border:1.5px solid var(--line);color:var(--chalk);border-radius:8px;padding:6px 12px;font:600 .88rem var(--body);cursor:pointer}
+.copy:hover{border-color:var(--lime)}
+.calc{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.calc label{display:flex;flex-direction:column;gap:6px;font-size:.85rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.calc input,.calc-name{width:100%;padding:12px;border-radius:10px;border:1.5px solid var(--line);background:var(--navy);color:var(--chalk);font:600 1.15rem var(--body);font-variant-numeric:tabular-nums}
+.calc-name{font-size:1rem;font-weight:500}
+.total{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-top:14px;border-top:1.5px dashed var(--line)}
+.total span{color:var(--muted)}
+.total strong{font-family:var(--display);font-weight:800;font-size:2.4rem;color:var(--lime);font-variant-numeric:tabular-nums}
+.note{font-size:.9rem;color:var(--muted)}
+.pix{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start}
+.pix img{width:150px;height:150px;border-radius:10px;background:#fff;padding:8px;image-rendering:pixelated}
+.pix-copy{display:flex;flex-direction:column;gap:8px;min-width:0}
+.pix-copy .copy{align-self:flex-start}
+.pix code{display:block;padding:10px;border-radius:8px;background:var(--navy);border:1.5px solid var(--line);font-size:.78rem;line-height:1.4;word-break:break-all;user-select:all;color:var(--chalk)}
+@media (max-width:520px){.pix{grid-template-columns:1fr}.pix img{width:180px;height:180px}}
+
+/* Cardápio */
+.menu{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.dish{position:relative;overflow:hidden;border-radius:18px;padding:30px;min-height:230px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px}
+.dish.feijoada{background:var(--lime);color:var(--navy)}
+.dish.chopp{background:var(--navy-3);border:1.5px solid var(--line)}
+.dish h3{font-size:clamp(3rem,7vw,4.4rem);font-style:italic;font-weight:900;text-transform:uppercase}
+.dish p{max-width:34ch;font-weight:500}
+.dish svg{position:absolute;top:22px;right:22px;width:84px;height:84px;opacity:.9}
+.menu-foot{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px}
+
+/* Local */
+.place{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:stretch}
+.addr{display:flex;flex-direction:column;gap:14px}
+.addr h3{font-size:2.4rem;font-weight:800;font-style:italic;text-transform:uppercase}
+.addr address{font-style:normal;font-size:1.15rem;line-height:1.5}
+.pin{position:relative;border-radius:18px;overflow:hidden;background:var(--navy-2);border:1.5px solid var(--line);min-height:260px;display:flex;flex-direction:column;justify-content:flex-end;padding:22px;gap:10px;text-decoration:none}
+.pin .grid{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:34px 34px;opacity:.5}
+.pin .mark{position:absolute;top:38%;left:50%;transform:translate(-50%,-50%);width:58px;height:58px}
+.pin .mark::after{content:"";position:absolute;inset:-18px;border-radius:50%;border:2px solid var(--lime);animation:ping 2.2s ease-out infinite;opacity:0}
+.pin strong{position:relative;font-family:var(--display);font-size:1.7rem;font-weight:800;text-transform:uppercase;font-style:italic}
+.pin span{position:relative;color:var(--muted);font-size:.95rem}
+@keyframes ping{0%{transform:scale(.4);opacity:.9}100%{transform:scale(1.3);opacity:0}}
+
+/* Melhores momentos */
+.timeline{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;position:relative}
+.timeline::before{content:"";position:absolute;left:96px;top:8px;bottom:8px;width:3px;background:var(--line)}
+.timeline li{display:grid;grid-template-columns:96px 1fr;gap:28px;padding-block:16px;position:relative}
+.timeline li::after{content:"";position:absolute;left:90px;top:26px;width:15px;height:15px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px var(--navy)}
+.timeline time{font-family:var(--display);font-weight:800;font-style:italic;text-transform:uppercase;font-size:1.25rem;color:var(--lime);padding-top:4px;line-height:1.2}
+.timeline li>div{min-width:0;display:flex;flex-direction:column;gap:6px;max-width:68ch;padding-left:8px}
+.timeline h3{font-size:1.9rem;font-weight:800;font-style:italic;text-transform:uppercase}
+.timeline p{color:#d3dcc4}
+@media (max-width:520px){
+  .timeline::before{left:6px}
+  .timeline li{grid-template-columns:1fr;gap:4px;padding-left:28px}
+  .timeline li::after{left:0;top:22px}
+  .timeline li>div{padding-left:0}
+}
+
+/* Galeria */
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+.gallery a{display:block;aspect-ratio:1;border-radius:10px;overflow:hidden;background:var(--navy-2);max-width:100%}
+.gallery img{width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
+.gallery a:hover img{transform:scale(1.05)}
+.empty{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;padding:30px;border-radius:18px;border:2px dashed var(--line);background:var(--navy-2)}
+.empty svg{width:96px;height:96px}
+.album{border-style:solid;text-decoration:none;transition:border-color .15s ease,transform .15s ease}
+.album:hover{border-color:var(--lime);transform:translateY(-2px)}
+.empty-copy{display:flex;flex-direction:column;gap:12px;min-width:0}
+.empty-copy h3{font-size:2rem;font-weight:800;font-style:italic;text-transform:uppercase}
+.more{margin-top:20px;display:flex;flex-wrap:wrap;align-items:center;gap:14px;color:var(--muted)}
+
+/* Playlist */
+.playlist{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;padding:30px;border-radius:18px;background:linear-gradient(120deg,var(--navy-3),var(--navy-2));border:1.5px solid var(--line)}
+.vinyl{width:150px;height:150px;border-radius:50%;background:repeating-radial-gradient(circle,var(--navy) 0 3px,#0a1129 3px 5px);display:grid;place-items:center;animation:spin 6s linear infinite;box-shadow:0 0 0 4px var(--navy-3)}
+.vinyl::after{content:"08.1";display:grid;place-items:center;width:58px;height:58px;border-radius:50%;background:var(--lime);color:var(--navy);font:900 italic 1.3rem var(--display)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.playlist-copy{display:flex;flex-direction:column;gap:12px;min-width:0}
+.playlist-copy h3{font-size:2.3rem;font-weight:800;font-style:italic;text-transform:uppercase}
+
+footer{padding-block:40px 56px;border-top:6px solid var(--lime);background:var(--navy-2);text-align:center}
+footer p{color:var(--muted);font-size:.95rem}
+footer .slogan{color:var(--chalk);margin:0 auto 8px;font-family:var(--display);font-style:italic;font-weight:800;font-size:1.8rem;text-transform:uppercase;max-width:none}
+
+@media (max-width:820px){
+  .hero-in,.rsvp,.place,.menu{grid-template-columns:1fr}
+  .jersey{order:-1;width:min(210px,70%)}
+}
+@media (max-width:520px){
+  .calc{grid-template-columns:1fr 1fr}
+  .calc label:first-child{grid-column:1/-1}
+  .empty,.playlist{grid-template-columns:1fr;text-align:left}
+  .vinyl{width:110px;height:110px}
+  section{padding-block:56px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="stripes" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      <p class="eyebrow">Direito 2008.1 · quase 14 anos depois</p>
+      <h1><small>Encontro da</small><b>Morcegada</b></h1>
+      <p class="slogan">Morcegada, da facul para a feijoada.</p>
+      <div class="hero-meta">
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Terça, 22 de dezembro de 2026</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>12h</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Espaço Moto MP · ACMP</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Confirme até 13/12</span>
+      </div>
+      <div class="count" id="count" aria-label="Contagem regressiva">
+        <div><strong id="cd-d">--</strong><span>dias</span></div>
+        <div><strong id="cd-h">--</strong><span>horas</span></div>
+        <div><strong id="cd-m">--</strong><span>min</span></div>
+      </div>
+      <div class="cta-row">
+        <a class="btn btn-solid" href="#confirmar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Confirmar presença</a>
+        <a class="btn btn-ghost" href="#playlist">Escolher a trilha</a>
+      </div>
+    </div>
+    <div class="jersey" aria-hidden="true">
+      <svg viewBox="0 0 300 330">
+        <path d="M95 18 L58 30 L8 78 L44 132 L72 112 L72 318 L228 318 L228 112 L256 132 L292 78 L242 30 L205 18 C196 40 176 52 150 52 C124 52 104 40 95 18 Z" fill="#a6d63a" stroke="#0d1733" stroke-width="5" stroke-linejoin="round"/>
+        <path d="M95 18 C104 40 124 52 150 52 C176 52 196 40 205 18" fill="none" stroke="#0d1733" stroke-width="10"/>
+        <path d="M8 78 L44 132 L72 112" fill="none" stroke="#0d1733" stroke-width="8"/>
+        <path d="M292 78 L256 132 L228 112" fill="none" stroke="#0d1733" stroke-width="8"/>
+        <text x="150" y="112" text-anchor="middle" font-family="Saira Extra Condensed, Arial Narrow, sans-serif" font-weight="800" font-size="34" fill="#0d1733" letter-spacing="3">MORCEGADA</text>
+        <text x="150" y="250" text-anchor="middle" font-family="Saira Extra Condensed, Arial Narrow, sans-serif" font-style="italic" font-weight="900" font-size="132" fill="#0d1733">08.1</text>
+        <text x="150" y="294" text-anchor="middle" font-family="Barlow, Arial, sans-serif" font-weight="700" font-size="15" fill="#0d1733" letter-spacing="4">DIREITO</text>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="confirmar">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Confirmação</p>
+        <h2>Confirme sua <em>presença</em></h2>
+        <p>A confirmação é feita pelo WhatsApp, com o Stefano, <strong>até domingo, 13 de dezembro</strong>. Monte sua mensagem aqui embaixo e ela já sai pronta.</p>
+      </div>
+      <div class="rsvp">
+        <div class="panel">
+          <ol class="steps">
+            <li><div><b>Mande mensagem no WhatsApp</b><span>Até 13 de dezembro. Diga quantos adultos e crianças vão com você.</span></div></li>
+            <li><div><b>Pague por Pix, antecipado</b><span>R$ 90,00 por adulto. Crianças não pagam.</span></div></li>
+            <li><div><b>Envie o comprovante</b><span>No mesmo WhatsApp. Pronto, lugar garantido.</span></div></li>
+          </ol>
+          <div>
+            <p class="note">WhatsApp do Stefano</p>
+            <div class="phone"><strong id="phone">(48) 99131-3144</strong><button class="copy" type="button" data-copy="(48) 99131-3144">Copiar</button></div>
+          </div>
+          <div class="pix">
+            <img src="data:image/png;base64,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" width="228" height="228" alt="QR code do Pix de R$ 90,00 para Stefano Garcia da Silveira">
+            <div class="pix-copy">
+              <p class="note">Pix de R$ 90,00 (1 adulto) · Stefano Garcia da Silveira</p>
+              <code id="pix">00020126600014br.gov.bcb.pix0119stefanogs@gmail.com0215Morcegada_Party520400005303986540590.005802BR5925STEFANO_GARCIA_DA_SILVEIR6013FLORIANOPOLIS62130509Morcegada630425DF</code>
+              <button class="copy" type="button" data-copy="00020126600014br.gov.bcb.pix0119stefanogs@gmail.com0215Morcegada_Party520400005303986540590.005802BR5925STEFANO_GARCIA_DA_SILVEIR6013FLORIANOPOLIS62130509Morcegada630425DF">Copiar Pix copia e cola</button>
+              <p class="note">Chave e-mail: stefanogs@gmail.com</p>
+            </div>
+          </div>
+          <p class="note">Acompanhantes, crianças e pets são bem-vindos.</p>
+        </div>
+        <form class="panel" id="rsvp-form">
+          <div class="calc">
+            <label for="nome">Seu nome<input class="calc-name" id="nome" type="text" autocomplete="name" placeholder="Como a turma te chama"></label>
+            <label for="adultos">Adultos<input id="adultos" type="number" min="1" max="20" value="2" inputmode="numeric"></label>
+            <label for="criancas">Crianças<input id="criancas" type="number" min="0" max="20" value="0" inputmode="numeric"></label>
+          </div>
+          <div class="total"><span>Total a pagar por Pix</span><strong id="total">R$ 180,00</strong></div>
+          <button class="btn btn-ghost" id="pix-total" type="button">Copiar Pix de R$ 180,00</button>
+          <a class="btn btn-solid" id="wa" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 2.9 2.9 0 0 0-.9 2.2 5 5 0 0 0 1.1 2.7 11.5 11.5 0 0 0 4.4 3.9c1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.7-.3z"/></svg>
+            Confirmar pelo WhatsApp
+          </a>
+          <p class="note">O Pix copiado aqui já vem com o total do seu grupo: é só colar no app do banco em "Pix copia e cola". O botão verde abre o WhatsApp com a mensagem preenchida. Se não abrir, copie o número ao lado e escreva direto.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="cardapio">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Cardápio</p>
+        <h2>Feijoada <em>e chopp</em></h2>
+        <p>Almoço de fim de ano com mesa farta e conversa longa.</p>
+      </div>
+      <div class="menu">
+        <article class="dish feijoada">
+          <svg viewBox="0 0 64 64" fill="none" stroke="#0d1733" stroke-width="3.5" stroke-linecap="round" aria-hidden="true"><path d="M8 30h48c0 13-10.7 22-24 22S8 43 8 30z"/><path d="M4 30h56"/><path d="M24 22c0-4 4-4 4-8M32 22c0-4 4-4 4-8M40 22c0-4 4-4 4-8"/></svg>
+          <h3>Feijoada</h3>
+          <p>O prato da tarde. Chegue com fome, porque a conversa vai longe.</p>
+        </article>
+        <article class="dish chopp">
+          <svg viewBox="0 0 64 64" fill="none" stroke="#a6d63a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 20h28v34a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4z"/><path d="M42 26h6a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5h-6"/><path d="M14 20c-3-6 3-12 9-9 3-5 11-5 14 0 5-2 9 4 5 9"/><path d="M22 30v20M30 30v20"/></svg>
+          <h3>Chopp</h3>
+          <p>Gelado, para brindar os quase 14 anos. O patrocínio da Bacardi segue como em 2008: só falta eles mandarem o dinheiro.</p>
+        </article>
+      </div>
+      <div class="menu-foot">
+        <span class="chip">R$ 90,00 por adulto</span>
+        <span class="chip">Crianças não pagam</span>
+        <span class="chip">Pets bem-vindos</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="local">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Local</p>
+        <h2>Onde <em>fica</em></h2>
+      </div>
+      <div class="place">
+        <div class="panel addr">
+          <h3>Espaço Moto MP</h3>
+          <p class="note">Associação Catarinense do Ministério Público (ACMP)</p>
+          <address id="addr">R. Apóstolo Paschoal, 2242<br>Canasvieiras, Florianópolis/SC</address>
+          <div class="cta-row">
+            <a class="btn btn-solid" href="https://www.google.com/maps/search/?api=1&amp;query=R.+Ap%C3%B3stolo+Paschoal%2C+2242%2C+Canasvieiras%2C+Florian%C3%B3polis+SC" target="_blank" rel="noopener">Abrir no Google Maps</a>
+            <a class="btn btn-ghost" href="https://waze.com/ul?q=R.%20Ap%C3%B3stolo%20Paschoal%202242%20Canasvieiras%20Florian%C3%B3polis&amp;navigate=yes" target="_blank" rel="noopener">Ir com Waze</a>
+          </div>
+          <button class="copy" type="button" data-copy="R. Apóstolo Paschoal, 2242, Canasvieiras, Florianópolis/SC" style="align-self:flex-start">Copiar endereço</button>
+        </div>
+        <a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=R.+Ap%C3%B3stolo+Paschoal%2C+2242%2C+Canasvieiras%2C+Florian%C3%B3polis+SC" target="_blank" rel="noopener" aria-label="Ver o local no mapa">
+          <div class="grid" aria-hidden="true"></div>
+          <svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s-8-7-8-12.5a8 8 0 0 1 16 0C20 15 12 22 12 22z" fill="#a6d63a" stroke="#0d1733" stroke-width="1.5"/><circle cx="12" cy="9.5" r="3" fill="#0d1733"/></svg>
+          <strong>Ver no mapa</strong>
+          <span>Toque para abrir a rota até Canasvieiras, no norte da Ilha.</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="memorias">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Do arquivo do dir081</p>
+        <h2>Melhores <em>momentos</em></h2>
+        <p>Garimpado nos e-mails da lista da turma, de 2008 a 2013. Tudo verídico, com registro em ata.</p>
+      </div>
+      <ol class="timeline">
+        <li><time>ago 2008</time><div><h3>A saga da camisa</h3><p>A Samia propôs o morcego e o azul-marinho com verde-limão. Antes de existir camisa, já havia disputa por número: a 10 do Mateus, a 88 do Dhian, a 7 do Pedro, a 21 do Thiago e a 24, que o LF pediu para ninguém disputar. O Mateus encerrou um e-mail com "Revogam-se todas as disposições em contrário" e anunciou o patrocínio da Bacardi, que só faltava mandar o dinheiro. O Sassi defendeu o fundo azul porque morcego age à noite e ganhou o título de "Sassi também é biologia!".</p></div></li>
+        <li><time>jun 2009</time><div><h3>A eleição da noiva</h3><p>Para o casamento caipira da festa julina, o Lino seria o noivo e a turma votaria na noiva. Houve apuração parcial, acusação de voto em causa própria e a regra de que voto dado não se retifica. O favorito desistiu "com grande pesar" às vésperas da festa.</p></div></li>
+        <li><time>ago 2009</time><div><h3>Campanha Vem Jean</h3><p>Futebol marcado para sábado às 11h. Metade da turma protestou contra o horário. O Braulio viu vantagem: às 11h dá para tirar o "ranso" da sexta.</p></div></li>
+        <li><time>set 2009</time><div><h3>VICTORY!</h3><p>O Mark comunicou a vitória "à torcida que não se faz presente". O Mateus retificou: segunda vitória oficial, porque a primeira foi de W.O. O Sassi gritou "rumo ao hexa" e o Caco respondeu em verso que o hexa ficou sem nexo e ele, perplexo.</p></div></li>
+        <li><time>dez 2009</time><div><h3>Morcegada Beach Party</h3><p>O convite foi para "morcegos, morceguetes e Jean". A escolha das bebidas virou processo: Tequila Sal y Limón, patrocinada pela Bárbara, contra Pinga com Mel Bruta, patrocinada pela Mariana. Teve vodka até na gelatina.</p></div></li>
+        <li><time>jan 2010</time><div><h3>O Estatuto</h3><p>Stefano e Camila redigiram o estatuto da formatura, enviado com um sonoro "Mexam-se!". O Rene pegou o quórum do art. 35, o Jean achou o art. 22, inciso V, "cabreiro", e o Mateus cunhou a máxima: "Dinheiro não é problema, é solução!".</p></div></li>
+        <li><time>abr 2010</time><div><h3>Libertadores do CCJ</h3><p>Campanha "Bandeira já!", torcida das "morcecats" e a análise tática definitiva: "a gente tem o Lino". A vaquinha fechou com R$ 20 de sobra.</p></div></li>
+        <li><time>jul 2010</time><div><h3>Desordem no tribunal</h3><p>O Rene compartilhou transcrições de audiências absurdas e veio a promessa coletiva de não repetir nada daquilo na vida profissional. A turma avalia no dia 22.</p></div></li>
+        <li><time>jul 2013</time><div><h3>Epílogo</h3><p>Já formados, a Carol perguntou se algum morcego estava advogando e queria pegar um mandado de segurança. A Morcegada tinha virado colega de profissão.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="fotos">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Álbum colaborativo</p>
+        <h2>Morcegada <em>Party</em></h2>
+        <p>Fotos da faculdade e, depois do dia 22, do reencontro. Adicione as suas direto no álbum do Google Fotos.</p>
+      </div>
+      <div class="gallery" aria-label="50 fotos do álbum">
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipPHASl8Tn9f2Vb8KDzUHypk8mBXQ022OsfpcDMb?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczMs999ci3tO4WYalsVn18N50GgDcFaW01Hb0LoOPtBwS-2eS_Z2stm7pQj6IngC8ADI4q0b51Vt3cd5TqXXNcEyrPaHq1zJD_Ux2G9v0-UGEh4GaCgN=w400-h400-c" alt="Foto 1 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipPUNsMHcUHDEchgrD42WaVbrG8RxOTKVQ219D4V?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczPoOvsRPv0UhaS7borglk-uaWrkdcCk_0MQnRtBLPlASuCW3hnn85NvpKRccbH36PgUxVU92sZo3vyq3R38sI9j8vpgKEkCFi52tYyTNO8kNJf2kWDO=w400-h400-c" alt="Foto 2 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipMPLveNpihK056ddAyiGrt745RD0JYLIWdJFSNO?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczMpHDMoMIa6UZMJDGYADFHgg7d_n6WPy6AIJyfC1mM9KIcwKytnPH8O0PX2U5q9QOXi2bf7S9t2rlN7vVqln9iUsCzuXLVTORlvebulwJEltPMzj60b=w400-h400-c" alt="Foto 3 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipNQz3-fCOPEW80dt5NU7apW9x3IZHx3RUDYdsf7?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczPOq7-IQXVWCOoYacRYusYBgnvEPb1KtP_WkyzAMbSMjvJFlR3kAC97Y3TEOmIJYTJe6Dm9348wgKKQbSCLPTE7sKLUexKsoTvT1P_0-yEUyucQZH0u=w400-h400-c" alt="Foto 4 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipPuwnjbObFUFoJd5aUI4Vk6j6MeC8_-rNP1ZnGp?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczNh-VSa9whY3kukzW2qm6ejIrtnJK2uYEixau8MqqqGEyiZ8fdEET0twFOOYgNoF5QUT0-PmGMLO6NSSFxfTWiVCRXqYzWRYYU3BtxxjjvmiOKD7r-E=w400-h400-c" alt="Foto 5 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipMhgg7zDJBPf6JNUPBgWLUzA-2qTA9gu185Qkpn?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczOQ4tIGuZ1KV8cYngU4U9oyKNRjl0JACg90JoXVKv69mnifhIUVymTiVDM3aYaYBN404l2z_xfcnYMoOJP3-PDr_VRVRDNv1OA09XeRObTJwZkD-TU_=w400-h400-c" alt="Foto 6 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipO98h5-Qou1MW1IyufQrSmdUfMHCOL4CE1aTofL?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczOord5mhBCNGo6TYLJW94uo7oPvA4fD9agoOfk3WHw_qwgTvTzaZ2mmQqDoosuF-08n7uUkpWUlGFEBg8YqIM2kW-rP14JlbY0pOhi8WjWSO9EsiSnL=w400-h400-c" alt="Foto 7 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipNjipmEn4kzBzbv2Xgzb9QpBGP8WilNI8f3qDoz?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczP-_Xm8Zw5xS3Gethm6QT-aw82ARoiDIyV3eTfy9Nr2Y7Ov0gVFg7MlliQmwI7_L4-QwUE8XdGXlYrdSCtBCPxNodGnF0W5ny6Mrq8JqX68iq0wHpDa=w400-h400-c" alt="Foto 8 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipMSmdL488bwfV2voKCISpFwPWHo-Xihyv_TNJRF?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczMuc0c4JZTjxMtQ9qxlg3ysfQ7FRYNmQGSvWEmwwvUkW_gR12Vevq_H53dWBRwlYPgcJAr-4E1cUSR0-S-nTw3zbdhHT3pX1njy8y0BWc7_S1f59p1l=w400-h400-c" alt="Foto 9 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipOnwCkJEHB7H06luN-S1hGkiF_eNyzQ3utdZr24?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczMQOEWfb0C1MAUgswbRKFgpZv1DbRjxCMxV4hGX0BmcUfW7MfOlLcmRTPhfcvm8C8-4ujosqaII8XaiEM6zsDGOqtSzWbS3EV27yLwMc-Y3Q-J40xKQ=w400-h400-c" alt="Foto 10 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipM805iJ6sZ8RctCiSQGRAg9HTmQCeZ7ChLiByfW?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczPI0CjxQnRhmCNtyR7IlmqpCYYElLPlacaUtMDORtMorNzPT5NELbGHIkC0eq4wTdjQ6oqewuJMBWSyULGKxiI-LGKAz-RFLZTZU1Lh5mL76W9ZUGZi=w400-h400-c" alt="Foto 11 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipNITZOANwL7rzSbn-QSBT7IU558_9k5Jfkfupgs?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczMEMUkf2MOLaPUVaC5OKQ6TSMZy1FiAcCZKwjhss6AwOGgNVhS4hVrbmpdj6-y0JvGLAASVBtU7WISF0Z8_DE6QNg2Weql38WvO9uIC-IUhNXfo8AsK=w400-h400-c" alt="Foto 12 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipM6aBTTW0re1bBSdo7MtKmo91zOfISJMcPNkPEK?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczM2CTVf36DcfxsD9rdqp1B-aHia6gSj2JyCv1ctMhNc-zJoZEN_Y_wfGS1AHJlTIoLWW2d9nVj15403L1RIhMaIlhEjUBHpJsNcF78GhMJ1ZLVfOH1K=w400-h400-c" alt="Foto 13 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipOB-Y0K2WStpNcHJmCJtXM2Eppd4KYldqq51sB1?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczM-iMbzQ_lp1gFjNyK1IkF_3bavvIry_gzuhOhK9yPeRnQ7VDzrtAFjg9nKCVQDbivJpYwCtmJoe8b4ZprGkeixgdb3172RUaRG3d5dydEW7VShjZSm=w400-h400-c" alt="Foto 14 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipMaGO360cCURIvicCqLT_TOSWSu6eThf3AhT2s_?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczPlCy-P-1DVUK1nZrikWzLdLq6xn7Vsgz0-7ekAnFRxUH_8brFA8BMBTmG3Fn3KcqwsMvVrzZtaPdvgP0XbuM7MD49zMXHfzIoyR9FnW5QHCIk7XBDe=w400-h400-c" alt="Foto 15 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipOhCiRnUKFdHUMhczc9wnol1zpxV8RUDEubJhEy?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczOAMBNnsHV9vOKblGoqE3QAjECv2jHPcwAU0QWEo-WMCQwGsyUCAIe3q6l7Zw_GFns77pIxvXTVeDK6Ue8z74ib1aXHkSi5aKlhVg82AuEgDx3q3LFu=w400-h400-c" alt="Foto 16 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipNwZJbDv-eHTUuQG8M5XFDQHlHTZToXMAFSHg6R?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczO8TQhQ8encs-LkBKdAqPiIgsUV40zoo_cRUDeirxdKuiONY0eyy5yKdL47hwyyB2VutYKeghMbv4XSOf4RSGetRNkgJynuXv5QUksxwzeXizhWNawY=w400-h400-c" alt="Foto 17 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipOi2IVP-7DM4ReuMASIGfOZnH8rj4ElNCe5pmuZ?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczOmDZ5c0IVMfU0B3NvHyRp5cRoN21EhuV0RHqpt0NCgntL-RbcQqLdYtzJAAmaLubdhcel3vFP1vjyRues2GIcQzJFhwBXHkTwwY_8_ssPdmko9uFob=w400-h400-c" alt="Foto 18 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipMoiIjylX12SrWCm-Y2INtNwW5AyF8JlWKWkzit?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczPiQ0h0Qisf87F9R2ALXXS3PGsrbn3ICZOsyMO4zIYhhHb12WBdMQhOOEkXJLj9zOYjYjMYONYnxAyOoYLu_2DN9i4iBRMFFg8IWbmaLPKpusIlURB-=w400-h400-c" alt="Foto 19 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipOcDJnyfq94UIb1ZeQCisT01U7ixXIdYjypnLcg?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczOtw_-u-5Lvi0PJlWECNbEsQis_go5j0c72vw5sEpaKeKS7nA3gLP9h5CEWMi_FwVnLJds9BA4Hd6RGsV0eIGXXT_o6DTwtljSDUcssVvusbGX-S6HP=w400-h400-c" alt="Foto 20 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipOuXdaWyhqMkYXgjadz4AMkIV9PiwHVMVftY343?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczM6uu6mCf9nx2HTHYQgIDDAA5EGOTPcQhTUkh7banOOmm28IQ_fYugSE2IYjqJvBEiFepfUYBc2QXPW7PEJnEDmUCiieoalUZ-wjUhZ8cnbk__YtGdD=w400-h400-c" alt="Foto 21 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipOdTYi1DPVOs_wXkVTJ7Vg40BCcLcsbTYoRKgAd?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczOJDnW77N4TmVHOvfX9rhRjLQ4LXMP4gkKqZJZSVlUNsLZWV1jJznFJjT4JfhITnKyWMEEuWHByfIfYeX8SXWna1AXlebOghmO-8cGCednx31B9h6DA=w400-h400-c" alt="Foto 22 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipMdRL59Fyex5r3rXRvz7tor7MX9C6_OmUFmy2zK?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczPmsQKvJZBwR_00-saA86Q2jAVfjKZkR_dwdgjvrMqfFsJQQIgntx858Obc_Ul2fRUdUli8raWO_eF5ZS7OMZwYWl4EXqyKGYHfiB6qk8e3vLKtXNkz=w400-h400-c" alt="Foto 23 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipM4HKrmg9X6xUIxrYMISn74_f-59ctEUhWqy5sK?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczNGUiP2eDtZnYuiDfhbBRBLytSnhFtH_vML2tL4orGxA5N2VQfxbX23C-IE18zlKjXsFwCpkDx2_ZR5qh_iBppjY7kE3XdFR9I79c4BxNAaQXzI2alD=w400-h400-c" alt="Foto 24 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipOCOWDWmBfTrOk-lLZKwu2un0TWOP-EXNoajeS6?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczNOdVklHdI2ZnC9SjlOmt-_4BBuVMe7FoyeWx1-_GD6XAn6pgaaql0vvHTzGxaagFHe8jXyOHjJC9F0A8Jwh3qM08nddnyz1hfAnuTXWND_sw7CcJ6j=w400-h400-c" alt="Foto 25 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipP4Ap0gz_ymX6eRXysOpBAnMgophGpQ4I-C1vX_?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczMWy8UBocLfYZH5ULsdHvoN0Qt02HvBnGMaVEoxn-WSGdKmHqNCOnDmPXlNGpuX-Zjc0Jurgc4QqSF5AmzegZEZ5o92HaT51GOL07NlZPWVJFz4uLf7=w400-h400-c" alt="Foto 26 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipMp7H8fnl_0q4TdK6_8QtVznZiLN3fWv5U4ir4L?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczNWlG6uaXTVV-3om7VpEWdRmPuu14WstqWUJJnVj1V6W3rMCUVSunhHp8vr5jCUisY0gc4HjehG7bPO4LlpG2kyftNVaQNsycI5dYUorqbB605IpBxX=w400-h400-c" alt="Foto 27 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipPQU39c62SoeNbM7Q-eVpMys6_TNOLuyMg0Scdh?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczPnMIy6JntDL32xTYdSXOHPV-ZcvZXmY1AAmgHf2-FJXXCEuqsq80Mw-LOD9UUwSb8Wga1VX63dTYpYZjN8X6ZZr58Yzo_xFrktnjOqNXLXqIs6sDUH=w400-h400-c" alt="Foto 28 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipNJUMkWKM-2EtbxJowDnY-VDq-oiWn4pFo4cvII?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczNAWs05HvV7wnJjcCdDESKZG9odX43_-C7YHZs4QMvP13ayGFn5NbbfrUvBOcfN-V6XIKKtfw-BdWU4x552ZvLgU5fnBwZNecVuQrwldn_SlGjs_wTx=w400-h400-c" alt="Foto 29 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipPBufwrtYWEO-hQslUVIhVq1DZWJQooLRjHHi_A?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczPUIev_D6I1--TjoJoxtiXJB5xGF_VFiBmO1YAilxcquF6vpjDDA7ncwLBcrLk4bWTvJu2fIDL8Ig1V5Kw5rTrUE5FRCJj1KuF1URZfwxQIsjFvHY_o=w400-h400-c" alt="Foto 30 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipML9gTUFeTbxW0LbEQ3IW807yXw6BJEoA1D_HD7?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczNS11SHjcF9yChxkYwY_E3LObwpBNCVG9_wvRB6bHBEvp-Sh7UMF0zNXm54T-9jKg-JMVn3pjnQPy2kubFefVNmRKCjlXswVwVOcMVjOwGAOcW4Itdc=w400-h400-c" alt="Foto 31 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipOV8XGSKklWhNZETlXmiO7dsV9FWkl9vBPSBsoW?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczPbRca6GRTHkUD0cezeAa2k6E4BR4wnJnZMCVvZgM_dV0rfjbN3lCqFWfFIDuPUHj3h7T-YuL0wwsl9C1ZuiCtOd0h_n_6CbpbJCHZvs3UQtpCrkyrG=w400-h400-c" alt="Foto 32 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipNviPfjEw0_V_H6gAzo4d_s93bnE6Txl2fE0SUw?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczNuCEYfgEdowPcsrBgxV0M2j0Ei7eR4tJOvXIVzt8KZn46aYSI6DIlVjbcCNal75a-QsThseTZTG5Qcxkna1Wc_QXYw2xWuOZPgL8QYZ4zfDr1e07xV=w400-h400-c" alt="Foto 33 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipOl0DUzr9DfJsjbsj01oVNLDlpiwNnruJgr3C3Y?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczPQD2s30TTeSqHwv84kYqQ7JFv8WgsImzZ5dqjYyEmPwJ0JLIruJOYDqrSPycvzGCR3dUXF0pxj0ATwvO9me5UIRKu0BUlOzYcIjBQRo541UvomPNvA=w400-h400-c" alt="Foto 34 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipPfokKXvMMTSkC7XBSzQZOPq87HS3AQd5IgHjCV?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczNJB6Frqv4TLfp1EJip08GNSK4eoMcUmJg_9m819FWf5sZTzKwvXibAYoruR9_qy6COrDjGBLgcdD7qVx1gBJv95E2O_XXZCeIG9MN4i1euBZNkhqQA=w400-h400-c" alt="Foto 35 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipPieP5C0zQsn_sJNrDp7OZuM8_v0zV0PLlf_CRx?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczOKJWqy0UwLN5GhPDM1cMn1i5oMgVyI2us9wvXhohuZzTls3fnZD8VGoWLr3phX8w85tfbquf1Gja7KHVeTvP1juzL5turY1ucwGV6KZNfn28Sh_M1O=w400-h400-c" alt="Foto 36 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipNIFm-wYbfk45tpO-LHsYmCPBDfZmC2k0tepsFN?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczMYqKuVWwXrbycMoWoEjVPwLiveP9RZYOR8xlXFL26mEeVMKTq-AKJz3t_7rYrZdNtlTdp-IYgpV3ZWklC7YCGPC6Afv8gQKZo_BruoOi5hfNqOOkbE=w400-h400-c" alt="Foto 37 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipMulYbBrmjEJ0HvHZKGbGpqRYi7QVuBrt6CpPuk?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczNxg9g5x-JfNPTBeDoRviVz2PpCt9Z8Fl8s5IHjtq6ANADTHSqbPYoQQ--rNuZJieSXQFLo0wIAUKUZYiePH7zByRqJ-gFQt7vYs_rXNuACiDd6T35r=w400-h400-c" alt="Foto 38 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipOs64BBLNOMNH5gMxvxg8LjbUneXbOBWAjqR8NS?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczPDkwoFIGjqiD81AieJ5H_e1jYVb2032u02ljueakiP7vYJSxijIoLQNi9k5EhqwY0Itt91XtINwgGc0abYUd1QzJAR7in0z8QLxYBNv0Fp5tbTcZP-=w400-h400-c" alt="Foto 39 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipNwXOZzFe58_v9gCbdLuTwbvsOTvnLkdJYDENkO?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczPCMevTFkojuPGlWhSj2nYdTuhDFTsptB3vMcp9GOExIcByekxcxRVYkbLT9DrLtcZAlYiBF7yP0Jbgurn6MZfYUncOGn9pg_G-xH5gCgU3ODATmpUH=w400-h400-c" alt="Foto 40 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipP1zGJoHPP40c6eWDwQ2lhze8ZqQDSQFR_urQbc?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczPsQRXahFavP6Ei99jCOn3AorMhv3YFYBtqOO_tQcQyzm4QWSu2g4sHq9ux3v3cOqauzbc_XKej0YoF1hjT6ylz0XWqEnQ1uHuJpj_PQk_FykwBm0v4=w400-h400-c" alt="Foto 41 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipM4jr4BFgFNoVrPwJEqt7ko6Lws1eC4OpWqsMis?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczMCRW9Xgrc7vXiyCZf7igSucrB4_eLQdqK_kPmIg36d59Wdeyq804GXk61wqcyn3FuK8xX8JfTz6dQ5gIojVcGC5Wa-bMDCys7rjh4IS6yy9sN7nrV3=w400-h400-c" alt="Foto 42 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipNWenDzIYKrXf-qoCXEHqaVKSNO1ToioF_R_ZBO?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczNmPghWsQwPIfIAHwhD5dEdjgrsEHPVTWrGRCNWPyP1R68Y7DDAw4FSw0l7IDILXmSbG7pitGVyhFmCyHBKjIMRdyLMfepteaDGcZ0-0HoiGGX_rkJ8=w400-h400-c" alt="Foto 43 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipMCD8kBM7kdekhSwihe7ItjdDvbf3Kc9SiVxWrx?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczMtANAlrMTDOJhsN_AGUxsRgLkd-xWY_N7vUiXRfHlysEdzDz8DB-RB5poRt-QuMKqtW2IcThkHlDpCzWiPWtcl_m3cNlTG27kkiXgNfsIom0WNmDAv=w400-h400-c" alt="Foto 44 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipOBbZct8IVxuQ1m80G1WwmENX3JiJswEJEUmXSS?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczPWcCm-dDs6H0tM465UwIC2PBILBa3a_YwmDFylioRabp1-xiwhvs5qJZLOJtcO6P3dPav81wGAXAthvN6zbPiOPlNr7f_BQ4eMU36EqNV9pwYR1WyC=w400-h400-c" alt="Foto 45 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipPYBzUWjGyBlVoi49RfQ5Z74iO7ZvoX5ZsEV2q_?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczOR0gsJW69xn3uy-Est2Q-eqfuJSL_jaujTGMXrL3He0IfMEdGE1W1MdNdwsPt7A4g2qUHmEs5nuXFZt1oM5PRMp-UPAUSxxkg2TYMF5sR_KWVMXsc8=w400-h400-c" alt="Foto 46 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipPiOW5FZCh4nMqf7YUCixMO4l0MPZcAoCeuGrJt?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczP0xi59lQO4N5GmQi5Hdkfy-zyF8ZjIxPmm-pvmJU3_mcEph41f3hDrtlOzc4XfH0u0WaD2a9bZI9UpVMgWUepIezrx4ZIAsiuCJ6nVTNFvpaydnvJI=w400-h400-c" alt="Foto 47 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipMW0Z1cnw0-aHcmEpa-z6myWC2JaIhfIN29I7_X?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczOBQTuEADnumztefTtJsJ6uWwCfyyL0Lsbh26Mn125bqbb4tCq7IX3VwuAlgqXYRK52ZAQsDL1VKm-3FylvFHkkiI5paqCDFDZkk4mctf8hi2XHqAaZ=w400-h400-c" alt="Foto 48 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipNcXGJAQG_Z6OIQBSmMQZMrO2UotS3KEK5rX2Jh?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczPP4GEC91zsxzj9kpT7-ZHl86JGUXMmyChEcDRXtdLVv3Ue7Ibp6yhpeJ7yWf9O2SVrDi47TZQDOGBgTNDd_mLqamtUfwKfZ087PmKoiMyB5nKFkDtr=w400-h400-c" alt="Foto 49 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+        <a href="https://photos.google.com/share/AF1QipMcwYicmQDzUJBMREhKU5Sj7ljnDczbmQ0bNdtnvBPmDljyC2ya-xl0I_HoDvriYw/photo/AF1QipMGGZ-gHGfliXwVVeRNy-vfr9_32jWv8bIYELSs?key=akwyWWhseC04STUyaGZCZVU2UDdCY3diUTc5ZkdR" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/pw/AP1GczM9E_f8gVEOJbzxUukLWsuCCwVnVFflgASYHB0iquAqac26BkCbYyTDdOGo_SvKJtOafcbIPPVJ2iBaDYfxxcjzwlkRpfkoXxuf57ZBhnMVqKCWG5Qh=w400-h400-c" alt="Foto 50 do álbum da Morcegada" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+      </div>
+      <a class="empty album" style="margin-top:24px" href="https://photos.app.goo.gl/dsnvAkepN9kirK529" target="_blank" rel="noopener">
+        <svg viewBox="0 0 96 96" fill="none" stroke="#a6d63a" stroke-width="4" stroke-linejoin="round" aria-hidden="true"><rect x="10" y="20" width="76" height="58" rx="8"/><circle cx="34" cy="42" r="7"/><path d="M14 72l22-20 14 12 12-10 20 18"/></svg>
+        <div class="empty-copy">
+          <h3>Ver o álbum completo</h3>
+          <p class="note">Aqui em cima estão 50 fotos. No Google Fotos tem o álbum inteiro, e você pode adicionar as suas. Depois do dia 22, o álbum também guarda as fotos do reencontro.</p>
+          <span class="btn btn-solid" style="align-self:flex-start">Ver fotos no Google Fotos</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section id="playlist">
+    <div class="wrap">
+      <div class="playlist">
+        <div class="vinyl" aria-hidden="true"></div>
+        <div class="playlist-copy">
+          <p class="eyebrow">Playlist colaborativa</p>
+          <h3>A trilha é da turma</h3>
+          <p>Coloque na playlist aquela música que tocava nas festas da sala. Quem chegar primeiro escolhe a abertura.</p>
+          <div class="cta-row">
+            <a class="btn btn-solid" href="https://open.spotify.com/playlist/1NZaSUInhfHQbJznEJdweY?si=88iiAkB1S7yNRXrV1nEnoA&amp;pt=38d8508de71e6cc35ad007f4c9b5dd42&amp;pi=CqCULDzVS_6gZ" target="_blank" rel="noopener">Abrir no Spotify</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="slogan">Morcegada, da facul para a feijoada.</p>
+    <p>Encontro da turma de Direito 2008.1 · 22/12/2026, 12h · Espaço Moto MP (ACMP), Canasvieiras</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* Contagem até 22/12/2026, 12h em Florianópolis (UTC-3) */
+  var target = Date.UTC(2026, 11, 22, 15, 0, 0);
+  function pad(n){ return n < 10 ? "0" + n : "" + n; }
+  function tick(){
+    var ms = target - Date.now();
+    if (ms <= 0) {
+      document.getElementById("count").innerHTML = '<div style="min-width:auto"><strong>É hoje!</strong><span>bora pra feijoada</span></div>';
+      return;
+    }
+    var m = Math.floor(ms / 60000);
+    document.getElementById("cd-d").textContent = Math.floor(m / 1440);
+    document.getElementById("cd-h").textContent = pad(Math.floor(m % 1440 / 60));
+    document.getElementById("cd-m").textContent = pad(m % 60);
+  }
+  tick(); setInterval(tick, 30000);
+
+  /* Mensagem de confirmação */
+  var nome = document.getElementById("nome");
+  var ad = document.getElementById("adultos");
+  var cr = document.getElementById("criancas");
+  var tot = document.getElementById("total");
+  var wa = document.getElementById("wa");
+  function brl(v){ return "R$ " + v.toFixed(2).replace(".", ","); }
+  function num(el, min){ var v = parseInt(el.value, 10); return isNaN(v) || v < min ? min : v; }
+  function update(){
+    var a = num(ad, 1), k = num(cr, 0), t = a * 90;
+    tot.textContent = brl(t);
+    var who = nome.value.trim();
+    var msg = "Oi, Stefano! " + (who ? "Aqui é " + who + ". " : "") +
+      "Confirmo presença no Encontro da Morcegada, dia 22/12. Vamos " + a + (a === 1 ? " adulto" : " adultos") +
+      (k ? " e " + k + (k === 1 ? " criança" : " crianças") : "") +
+      ". Total de " + brl(t) + ". Segue o comprovante do Pix.";
+    wa.href = "https://wa.me/5548991313144?text=" + encodeURIComponent(msg);
+    pixBtn.textContent = "Copiar Pix de " + brl(t);
+    pixBtn.setAttribute("data-pix", pix(t));
+  }
+
+  /* Pix copia e cola (BR Code) com o valor do grupo */
+  var pixBtn = document.getElementById("pix-total");
+  function f(id, v){ return id + (v.length < 10 ? "0" : "") + v.length + v; }
+  function crc16(s){
+    var c = 0xFFFF;
+    for (var i = 0; i < s.length; i++) {
+      c ^= s.charCodeAt(i) << 8;
+      for (var j = 0; j < 8; j++) c = c & 0x8000 ? (c << 1 ^ 0x1021) & 0xFFFF : c << 1 & 0xFFFF;
+    }
+    return ("000" + c.toString(16).toUpperCase()).slice(-4);
+  }
+  function pix(v){
+    var s = f("00", "01") +
+      f("26", f("00", "br.gov.bcb.pix") + f("01", "stefanogs@gmail.com") + f("02", "Morcegada_Party")) +
+      f("52", "0000") + f("53", "986") + f("54", v.toFixed(2)) + f("58", "BR") +
+      f("59", "STEFANO_GARCIA_DA_SILVEIR") + f("60", "FLORIANOPOLIS") + f("62", f("05", "Morcegada")) + "6304";
+    return s + crc16(s);
+  }
+  pixBtn.addEventListener("click", function(){
+    var txt = pixBtn.getAttribute("data-pix"), old = pixBtn.textContent;
+    function say(m){ pixBtn.textContent = m; setTimeout(function(){ pixBtn.textContent = old; }, 1800); }
+    try { navigator.clipboard.writeText(txt).then(function(){ say("Pix copiado, cole no app do banco"); }, function(){ window.prompt("Copie o Pix copia e cola:", txt); }); }
+    catch (e) { window.prompt("Copie o Pix copia e cola:", txt); }
+  });
+  [nome, ad, cr].forEach(function(el){ el.addEventListener("input", update); });
+  document.getElementById("rsvp-form").addEventListener("submit", function(e){ e.preventDefault(); });
+  update();
+
+  /* Copiar */
+  document.querySelectorAll("[data-copy]").forEach(function(b){
+    b.addEventListener("click", function(){
+      var txt = b.getAttribute("data-copy"), old = b.textContent;
+      function done(){ b.textContent = "Copiado"; setTimeout(function(){ b.textContent = old; }, 1600); }
+      try {
+        navigator.clipboard.writeText(txt).then(done, function(){ fallback(); });
+      } catch (e) { fallback(); }
+      function fallback(){
+        var el = b.previousElementSibling && b.previousElementSibling.id ? b.previousElementSibling : document.getElementById("addr");
+        var r = document.createRange(); r.selectNodeContents(el);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        b.textContent = "Selecionado";
+        setTimeout(function(){ b.textContent = old; }, 1600);
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
